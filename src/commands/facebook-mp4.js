@@ -1,7 +1,7 @@
 const { reply, check, filterMsg, downloader} = require("../lib");
 
 module.exports = {
-  name: "Facebook MP4",
+  name: "Facebook Video",
   triggers: ["fb", "fbdl", "facebook"],
   code: async (sock, msg) => {
     try {

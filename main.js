@@ -1,4 +1,4 @@
-const { makeWASocket, useMultiFileAuthState, proto, jidDecode } = require("@whiskeysockets/baileys");
+const { makeWASocket, useMultiFileAuthState, proto, jidDecode, downloadContentFromMessage, downloadMediaMessage } = require("@whiskeysockets/baileys");
 const { commandHandler } = require("./src/handler");
 const { pino } = require("pino");
 require("./config");

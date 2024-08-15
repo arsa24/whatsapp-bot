@@ -3,7 +3,7 @@ const mime = require("mime-types");
 const axios = require("axios");
 
 module.exports = {
-  name: "Youtube MP3",
+  name: "Youtube Audio",
   triggers: ["ytmp3"],
   code: async (sock, msg) => {
     try {

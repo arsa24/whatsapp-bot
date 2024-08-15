@@ -2,7 +2,7 @@ const { reply, filterMsg, textFormatter, y2mateConverter } = require("../lib");
 const axios = require("axios");
 
 module.exports = {
-  name: "Instagram MP4",
+  name: "Instagram Video",
   triggers: ["ig", "igmp4", "instagram"],
   code: async (sock, msg) => {
     const ig = await filterMsg.position(msg, "except first")

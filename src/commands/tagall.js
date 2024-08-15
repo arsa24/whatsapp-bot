@@ -1,7 +1,7 @@
 const { reply, check } = require("../lib");
 
 module.exports = {
-  name: "Tag all",
+  name: "Tag All (Group Only)",
   triggers: ["tag", "everyone", "tagall"],
   code: async (sock, msg) => {
     try {

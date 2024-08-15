@@ -2,7 +2,7 @@ const { reply, filterMsg, textFormatter, y2mateConverter } = require("../lib");
 const axios = require("axios");
 
 module.exports = {
-  name: "Tiktok MP4",
+  name: "Tiktok Video",
   triggers: ["ttdl", "tt", "ttmp4", "tiktok"],
   code: async (sock, msg) => {
     try {
