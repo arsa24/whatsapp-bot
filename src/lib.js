@@ -19,7 +19,7 @@ exports.menu = () => {
   let cmd = fs.readdirSync(path)
   cmd.forEach( c => {
       const commands = require(`${__dirname}/commands/${c}`)
-      text += `┌[ ${commands.name} ]\n`
+      text += `┌[ ${this.textFormatter.bold(commands.name)} ]\n`
       let triggers = commands.triggers
       triggers.forEach(trigger => {
           text += `│⇨ .${trigger}\n`
