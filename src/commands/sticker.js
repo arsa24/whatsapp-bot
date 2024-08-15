@@ -4,6 +4,7 @@ const { Sticker, StickerTypes } = require("wa-sticker-formatter");
 const { downloadMediaMessage, downloadContentFromMessage } = require("@whiskeysockets/baileys");
 
 module.exports = {
+  name: "Sticker",
   triggers: ["sticker", "s", "stiker"],
   code: async (sock, msg) => {
     try {

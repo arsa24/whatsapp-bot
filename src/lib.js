@@ -1,4 +1,5 @@
 const axios = require("axios")
+const fs = require("fs")
 const cheerio = require("cheerio")
 const mime = require("mime-types")
 require("../config")
@@ -9,6 +10,24 @@ exports.reply = async (sock, msg, content, options) => {
     quoted: msg.messages[0],
     ...options
   })
+}
+
+exports.menu = () => {
+  let text = `『 *Info Bot* 』\n\n> Owner: ${global.bot.owner}\n> Prefix: ${global.bot.prefix}\n\n`
+  text += `『 *Menu Bot* 』\n\n`
+  const path = "src/commands"
+  let cmd = fs.readdirSync(path)
+  cmd.forEach( c => {
+      const commands = require(`${__dirname}/commands/${c}`)
+      text += `┌[ ${commands.name} ]\n`
+      let triggers = commands.triggers
+      triggers.forEach(trigger => {
+          text += `│⇨ .${trigger}\n`
+      })
+      text += `└\n\n`
+  })
+  text += `${this.textFormatter.italic("Serika Bot")}`
+  return text
 }
 
 exports.filterMsg = {

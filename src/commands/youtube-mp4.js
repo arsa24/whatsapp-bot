@@ -2,6 +2,7 @@ const { reply, filterMsg, textFormatter, y2mateConverter } = require("../lib");
 const axios = require("axios");
 
 module.exports = {
+  name: "Youtube MP4",
   triggers: ["ytmp4", "yt"],
   code: async (sock, msg) => {
     try {
