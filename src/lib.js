@@ -60,6 +60,10 @@ exports.check = {
     const messageType = await msg.messages[0].message?.extendedTextMessage?.contextInfo?.quotedMessage?.imageMessage?.url ? true : await msg.messages[0].message?.extendedTextMessage?.contextInfo?.quotedMessage?.videoMessage?.url ? true : false
     return messageType
   },
+  isOwner: async (msg) => {
+    let number = await msg.messages[0].key.participant == undefined ? msg.messages[0].key.remoteJid : await msg.messages[0].key.participant
+    return await number.split("@")[0] == global.bot.ownerNumber ? true : false 
+  }
 }
 
 exports.textFormatter = {
@@ -152,16 +156,10 @@ exports.tts = async (input) => {
 }
 
 exports.y2mateConverter = async (vidId, k) => {
-  const options = {
-      headers: {
-          "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36",        
-      }
-  }
   const response = await axios.post("https://id-y2mate.com/mates/convertV2/index", {
       vid: vidId,
       k
-  }, options)
+  }, global.headers.y2mate)
 
   return await response
 }

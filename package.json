@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "main.js",
   "scripts": {
-    "test": "node main.js"
+    "test": "node main.js",
+    "start": "pm2 start",
+    "stop": "pm2 stop whatsapp-bot"
   },
   "author": "Arsa",
   "license": "ISC",
@@ -17,7 +19,9 @@
     "got": "^14.4.2",
     "mime-types": "^2.1.35",
     "pino": "^9.3.2",
+    "pm2": "^5.4.2",
     "qrcode-terminal": "^0.12.0",
+    "telegraph-uploader": "^2.0.0",
     "wa-sticker-formatter": "^4.4.4"
   }
 }

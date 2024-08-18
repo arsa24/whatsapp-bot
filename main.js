@@ -37,7 +37,6 @@ async function main() {
     await sock.readMessages([key]);
     
     commandHandler(sock, msg);
-    
   });
 }
 

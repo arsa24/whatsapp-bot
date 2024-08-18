@@ -1,33 +1,27 @@
 const { reply, filterMsg, textFormatter, y2mateConverter } = require("../lib");
 const axios = require("axios");
+require("../../config");
 
 module.exports = {
   name: "Tiktok Video",
   triggers: ["ttdl", "tt", "ttmp4", "tiktok"],
   code: async (sock, msg) => {
-    try {
-      const urlYt = await filterMsg.position(msg, "except first");
-      const payload = {
-        k_query: urlYt,
-        k_page: "home",
-        hl: "",
-        q_auto: "1",
-      };
+    const url = await filterMsg.position(msg, "except first");
+    const payload = {
+      k_query: url,
+      k_page: "home",
+      hl: "id",
+      q_auto: 0,
+    };
 
-      const options = {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-          "User-Agent":
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36",
-        },
-      };
-      const response = await axios.post(
+    axios
+      .post(
         "https://id-y2mate.com/mates/analyzeV2/ajax",
         payload,
-        options
-      );
-      const data = await response.data;
-      if ((await data.status) == "ok") {
+        global.headers.y2mate
+      )
+      .then(async (response) => {
+        const data = await response.data;
         const vid = data.links.video[data.links.video.length - 1];
 
         let result = {
@@ -49,9 +43,9 @@ module.exports = {
           gifPlayback: false,
           ptv: false,
         });
-      }
-    } catch (e) {
-      reply(sock, msg, `${textFormatter.bold("[ ! ]")} ${e}`);
-    }
+      })
+      .catch((err) => {
+        reply(sock, msg, `${textFormatter.bold("[ ! ]")} ${err}`);
+      });
   },
 };
