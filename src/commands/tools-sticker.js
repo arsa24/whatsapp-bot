@@ -1,6 +1,6 @@
 require("../../config");
 const { textFormatter, reply, check } = require("../lib");
-const { Sticker, StickerTypes } = require("wa-sticker-formatter");
+const {createSticker} = require("sticker-maker-wa")
 const { downloadMediaMessage, downloadContentFromMessage } = require("@whiskeysockets/baileys");
 
 module.exports = {
@@ -56,15 +56,14 @@ module.exports = {
           }
         }
 
-        const sticker = new Sticker(buffer, {
-          pack: global.sticker.packname,
-          author: global.sticker.author,
-          type: StickerTypes.FULL,
-          quality: 50,
-          // background: '#000000'
-        });
+        const sticker = await createSticker(buffer, {
+          metadata: {
+            author: global.sticker.author,
+            packname: global.sticker.packname,
+          }
+        })
 
-        await reply(sock, msg, await sticker.toMessage())
+        await reply(sock, msg, {sticker})
       }
     } catch (e) {
       console.error(e);
