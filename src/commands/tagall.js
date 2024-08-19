@@ -22,7 +22,7 @@ module.exports = {
           quoted: msg.messages[0],
         })
       } else {
-        reply(sock, msg, "error");
+        reply(sock, msg, "[ ! ] Perintah hanya bisa digunakan di dalam Group Whatsapp! ");
       }
     } catch (e) {
       reply(sock, msg, `${textFormatter.bold("[ ! ]")} ${e}`);
