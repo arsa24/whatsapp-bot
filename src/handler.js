@@ -26,10 +26,10 @@ exports.commandHandler = async (sock, msg) => {
       }
     }
 
-    commands.forEach((cmd) => {
+    commands?.forEach((cmd) => {
       const commandPath = path.join(pathCmd, cmd);
       const c = require(commandPath);
-      c.triggers.forEach((alias) => {
+      c?.triggers?.forEach((alias) => {
         if (message.split(" ")[0].toLowerCase() === global.bot.prefix + alias) {
           simulate.typing(sock, msg);
           return c.code(sock, msg);
